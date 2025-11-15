@@ -1,0 +1,13 @@
+{
+  "name": "node-ci-demo",
+  "version": "1.0.0",
+  "description": "CI pipeline practice project",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "build": "echo 'Packaging build...' && mkdir -p dist && cp app.js dist/"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
