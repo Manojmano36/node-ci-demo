@@ -1,9 +1,9 @@
 pipeline {
-    agent any
+    agent { label 'docker-builder' }
 
     environment {
         AWS_REGION = "us-east-1"
-        REPO_URI = "234189401549.dkr.ecr.us-east-1.amazonaws.com/node-ci-demo"
+        REPO_URI = "public.ecr.aws/g3a2j9b7/jenkins/mano-jenkins"
     }
 
     stages {
