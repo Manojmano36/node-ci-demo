@@ -42,15 +42,17 @@ pipeline {
         }
 
         stage('Login to ECR') {
-            steps {
-                withAWS(credentials: 'IAM', region: "${AWS_REGION}") {
-                    sh """
-                    aws ecr get-login-password --region ${AWS_REGION} \
-                    | docker login --username AWS --password-stdin ${REPO_URI}
-                    """
-                }
-            }
+    agent { label 'docker-builder' }
+
+    steps {
+        withAWS(credentials: 'aws-ecr-creds', region: 'us-east-1') {
+            sh '''
+                aws ecr get-login-password --region us-east-1 \
+                | docker login --username AWS --password-stdin 234189401549.dkr.ecr.us-east-1.amazonaws.com
+            '''
         }
+    }
+}
 
         stage('Push Docker Image') {
             steps {
