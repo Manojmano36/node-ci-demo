@@ -45,7 +45,7 @@ pipeline {
     agent { label 'docker-builder' }
 
     steps {
-        withAWS(credentials: 'aws-ecr-creds', region: 'us-east-1') {
+        withAWS(credentials: 'IAM', region: 'us-east-1') {
             sh '''
                 aws ecr get-login-password --region us-east-1 \
                 | docker login --username AWS --password-stdin 234189401549.dkr.ecr.us-east-1.amazonaws.com
